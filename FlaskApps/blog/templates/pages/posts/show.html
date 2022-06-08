@@ -1,0 +1,9 @@
+{% extends 'layouts/base.html' %}
+
+{% block body %}
+    <article>
+        <h2>{{ post.title }}</h2>
+        <p><b>{{ post.content }}</b></p>
+    </article>
+    <a href="{{ url_for('about') }}">>> Retour</a>
+{% endblock %}

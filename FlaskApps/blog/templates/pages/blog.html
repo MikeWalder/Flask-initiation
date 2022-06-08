@@ -1,0 +1,34 @@
+{% extends 'layouts/base.html' %}
+
+{% block body %}
+
+    <h1>Nos articles</h1>
+    <br>
+
+    {% for post in posts %}
+        <article>
+            <h2>{{ post }}</h2>
+        </article>
+        <hr>
+    {% endfor %}
+
+    {# <article>
+        <h2>First post</h2>
+        <p>This is the first post here</p>
+    </article>
+
+    <hr>
+
+    <article>
+        <h2>First post</h2>
+        <p>This is the first post here</p>
+    </article>
+
+    <hr>
+
+    <article>
+        <h2>First post</h2>
+        <p>This is the first post here</p>
+    </article> #}
+
+{% endblock %}
