@@ -10,6 +10,12 @@ ressources = [
     {'id':3, 'title':'Schneider Electric', 'content':'Spécialiste et leader mondial des solutions numériques d\'énergie et des automatisations pour l\'efficacité énergétique'},
 ]
 
+@app.context_processor
+def utility_processor():
+    def pluralize(count, singular, plural=None):
+        return 's'
+    return dict(pluralize = pluralize)
+
 @app.route('/')
 def home():
     return render_template('pages/index.html')

@@ -3,7 +3,7 @@
 {% block body %}
 
     <h1>A propos de notre application</h1>
-    <p>Vous pouvez consulter nos sponsors majeurs ({{links|length}}):</p>
+    <p>Vous pouvez consulter nos sponsors majeurs ({{ pluralize(links|length, 'post', 'posts' )}}):</p>
 
     {% for link in links %}
         <p>
