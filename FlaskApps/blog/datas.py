@@ -8,7 +8,7 @@ class Post():
         {'id':4, 'title':'CGED', 'content':'Matériel électrique pour professionnels'},
     ]
 
-    @classmethod
+    @classmethod # pour appeler la méthode sans pour autant créer une instance de classe 
     def all(cls):
         # Fetch all ressources 
         return cls.RESSOURCES
@@ -18,6 +18,6 @@ class Post():
         # Fetch Ressource by id
         try:
             return cls.RESSOURCES[int(id) - 1]
-        except IndexError:
+        except IndexError: # cas où le paramètre d'entrée est autre que int
             abort(404)
 
