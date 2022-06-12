@@ -17,11 +17,11 @@ class Post(db.Model):
     title = db.Column(db.String(255))
     content = db.Column(db.Text)
 
-ressources = [
+""" ressources = [
     {'id':1, 'title':'Legrand', 'content':'Un des leaders mondiaux des produits et systèmes pour installations électriques et réseaux' },
     {'id':2, 'title':'Hager', 'content':'Entreprise familiale spécialisée dans les installations électriques'},
     {'id':3, 'title':'Schneider Electric', 'content':'Spécialiste et leader mondial des solutions numériques d\'énergie et des automatisations pour l\'efficacité énergétique'},
-]
+] """
 
 @app.context_processor
 def time_now():
@@ -43,7 +43,8 @@ def home():
 
 @app.route('/about')
 def about():
-    return render_template('pages/about.html', links=ressources)
+    all = Post.query.all()
+    return render_template('pages/about.html', links=all)
 
 @app.route('/pages/posts/<int:id>')
 def descr_about(id):
