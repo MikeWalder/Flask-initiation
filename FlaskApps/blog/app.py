@@ -8,6 +8,7 @@ from flask_sqlalchemy import SQLAlchemy
 
 app = Flask(__name__)
 
+# Connexion à la base de données via SQLAlchemy
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///database/db.sqlite3'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
@@ -17,12 +18,11 @@ class Post(db.Model):
     title = db.Column(db.String(255))
     content = db.Column(db.Text)
 
-""" ressources = [
-    {'id':1, 'title':'Legrand', 'content':'Un des leaders mondiaux des produits et systèmes pour installations électriques et réseaux' },
-    {'id':2, 'title':'Hager', 'content':'Entreprise familiale spécialisée dans les installations électriques'},
-    {'id':3, 'title':'Schneider Electric', 'content':'Spécialiste et leader mondial des solutions numériques d\'énergie et des automatisations pour l\'efficacité énergétique'},
-] """
+    def __repr__(self):
+        return '<post "{}">'.format(self.title)
 
+
+# Filtres personnalisés
 @app.context_processor
 def time_now():
     return dict(now = datetime.now())
@@ -37,6 +37,7 @@ def utility_processor():
         return 's'
     return dict(pluralize = pluralize)
 
+# Routes
 @app.route('/')
 def home():
     return render_template('pages/index.html')
