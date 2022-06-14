@@ -34,7 +34,10 @@ def utility_processor():
             raise ValueError('"{}" must be an integer'.format(count))
         if plural is None:
             return singular + 's'
-        return 's'
+        if count > 1:
+            return plural
+        if count == 1:
+            return singular
     return dict(pluralize = pluralize)
 
 # Routes

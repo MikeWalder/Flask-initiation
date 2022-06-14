@@ -3,11 +3,11 @@
 {% block body %}
 
     <h1>A propos de notre application</h1>
-    <p>Vous pouvez consulter nos sponsors majeurs ({{ pluralize(links|length, 'post', 'posts' )}}):</p>
+    <p>Voici la liste de nos principaux {{ pluralize(links|length, 'sponsor', 'sponsors' )}} :</p>
 
     {% for link in links %}
         <p>
-            <h3>- <a href="{{ url_for('descr_about', id=link.id) }}"><mark>{{ link.title|upper }}</mark></a></h3>
+            <h3>- <a href="{{ url_for('descr_about', id=link.id) }}"><em>{{ link.title|upper }}</em></a></h3>
         </p>
     {% endfor %}
 
