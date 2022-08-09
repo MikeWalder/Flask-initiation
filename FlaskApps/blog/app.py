@@ -1,6 +1,8 @@
-from flask import Flask, render_template
-
+from email import message
+from flask import Flask, render_template, request, jsonify
 # from datas import Post # importer les données du fichier data.py
+import requests
+import json
 
 from datetime import datetime
 
@@ -59,11 +61,29 @@ def descr_about(id):
 def contact():
     return render_template('pages/contact.html')
 
+@app.route('/card')
+def card():
+    return render_template('pages/card.html')
+
+@app.route('/card', methods=['POST'])
+def cardAdd():
+    response_object = {'status': 'success'}
+    nomVille = request.form['cardName']
+    #API_KEY = '4ff02ab0703b764e55577153c226ae8c'
+    #url = requests.get('https://api.openweathermap.org/data/2.5/weather?q='+cardName+'&lang=fr&appid='+API_KEY)
+    url_card = requests.get('https://geo.api.gouv.fr/communes?nom='+nomVille+'&fields=nom,code,codesPostaux,codeDepartement,codeRegion,population&format=json&geometry=centre')
+    #json_url_card = url_card.json()
+    #response_object['card'] = json_url_card
+    #name_city = url_card['name']
+    url_card_text = url_card.text
+    url_card_json = json.loads(url_card_text)
+    #return '<pre>'+url_card.text+'</pre>'
+    return render_template('pages/card.html', data = url_card_json)
+
 @app.route('/blog')
 def blog():
     articles = ['First article', 'Second article', 'Third article']
     return render_template('pages/blog.html', posts=articles)
-
 
 # Error handling 
 @app.errorhandler(404)

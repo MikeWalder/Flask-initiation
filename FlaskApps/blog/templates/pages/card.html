@@ -1,0 +1,28 @@
+{% extends 'layouts/base.html' %}
+
+{% block body %}
+
+    <h1>Card</h1>
+
+    <h3>Nous contacter : </h3>
+    <div class="contact">
+        <form method="POST" action="/card">
+            <input typ="text" name="cardName">
+            <button type="submit">Envoyer</button>
+        </form>
+        <pre>
+            {{data}}
+            {% for item in data %}
+                {{item['nom']}} - {{item['population']}} habitants
+            {% endfor %}
+        </pre>
+    </div>
+
+    <style>
+        .contact, h3 {
+            margin-left: 30px;
+        }
+    </style>
+
+{% endblock body %}
+
